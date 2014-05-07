@@ -99,4 +99,8 @@ public class MainActivity extends ActionBarActivity {
             return convertView;
         }
     }
+
+    public String[] getItems() {
+        return items;
+    }
 }
