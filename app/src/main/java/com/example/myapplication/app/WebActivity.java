@@ -21,16 +21,16 @@ public class WebActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
-        WebView myWebView = (WebView) findViewById(R.id.webview);
-        myWebView.loadUrl("file:///android_asset/web.htm");
 
-        WebSettings webSettings = myWebView.getSettings();
+        WebView webviev = (WebView) findViewById(R.id.webview);
+        webviev.loadUrl("file:///android_asset/web.htm");
+
+        WebSettings webSettings = webviev.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        WebView webView = (WebView) findViewById(R.id.webview);
-        webView.addJavascriptInterface(new WebAppInterface(this), "Android");
+        webviev.addJavascriptInterface(new WebAppInterface(this), "Android");
 
-        myWebView.setWebViewClient(new MyWebViewClient());
+        webviev.setWebViewClient(new MyWebViewClient());
 
     }
 
@@ -54,22 +54,11 @@ public class WebActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public class WebAppInterface {
-        Context mContext;
 
-        /** Instantiate the interface and set the context */
-        WebAppInterface(Context c) {
-            mContext = c;
-        }
 
-        /** Show a toast from the web page */
-        @JavascriptInterface
-        public void showToast(String toast) {
-            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-        }
-    }
 
     private class MyWebViewClient extends WebViewClient {
+
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (Uri.parse(url).getHost().equals("www.example.com")) {
@@ -86,5 +75,21 @@ public class WebActivity extends ActionBarActivity {
 
 
 
+
+
+    public class WebAppInterface {
+        Context mContext;
+
+        /** Instantiate the interface and set the context */
+        WebAppInterface(Context c) {
+            mContext = c;
+        }
+
+        /** Show a toast from the web page */
+        @JavascriptInterface
+        public void showToast(String toast) {
+            Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
