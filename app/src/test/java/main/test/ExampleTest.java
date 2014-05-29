@@ -62,7 +62,7 @@ public class ExampleTest extends ActivityInstrumentationTestCase2<MainActivity> 
         DetailActivity startedActivity = (DetailActivity) monitor.waitForActivityWithTimeout(2000);
 
         TextView textView = (TextView) startedActivity.findViewById(R.id.text);
-        assertEquals("Error","tre2",textView.getText().toString());
+        assertEquals("Error","tre",textView.getText().toString());
 
     }
 
